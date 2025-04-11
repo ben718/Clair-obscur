@@ -40,44 +40,48 @@ section.hero {
 }
 
 .h-1 {
-  animation: fadeInOut 12s infinite 0s;
+  animation: fadeInOut 20s infinite 0s;
+  font-family: "Fujiwara A Medium";
 }
 .h-2 {
-  animation: fadeInOut 12s infinite 3s;
+  animation: fadeInOut 20s infinite 5s;
+  font-family: "Fujiwara A Medium";
 }
 .h-3 {
-  animation: fadeInOut 12s infinite 6s;
+  animation: fadeInOut 20s infinite 10s;
+  font-family: "Fujiwara A Medium";
 }
 .h-4 {
-  animation: fadeInOut 12s infinite 9s;
+  animation: fadeInOut 20s infinite 15s;
+  font-family: "Fujiwara A Medium";
 }
 
 .h-1 h1:nth-child(1) {
-  animation: slideUp 12s infinite 0s;
+  animation: slideUp 20s infinite 0s;
 }
 .h-1 h1:nth-child(2) {
-  animation: slideUp 12s infinite 0.1s;
+  animation: slideUp 20s infinite 0.1s;
 }
 
 .h-2 h1:nth-child(1) {
-  animation: slideUp 12s infinite 3s;
+  animation: slideUp 20s infinite 5s;
 }
 .h-2 h1:nth-child(2) {
-  animation: slideUp 12s infinite 3.1s;
+  animation: slideUp 20s infinite 5.1s;
 }
 
 .h-3 h1:nth-child(1) {
-  animation: slideUp 12s infinite 6s;
+  animation: slideUp 20s infinite 10s;
 }
 .h-3 h1:nth-child(2) {
-  animation: slideUp 12s infinite 6.1s;
+  animation: slideUp 20s infinite 10.1s;
 }
 
 .h-4 h1:nth-child(1) {
-  animation: slideUp 12s infinite 9s;
+  animation: slideUp 20s infinite 15s;
 }
 .h-4 h1:nth-child(2) {
-  animation: slideUp 12s infinite 9.1s;
+  animation: slideUp 20s infinite 15.1s;
 }
 
 @keyframes fadeInOut {
@@ -232,14 +236,17 @@ section.work {
   );
 }
 
+
 .manifesto {
   position: relative;
   height: max-content;
 }
 
+/* 6.5rem */
 .manifesto-title h1 {
-  font-size: 6.5rem;
+  font-size: 4.5rem;
   line-height: 1.125;
+  font-family: "Fujiwara A Medium";
 }
 
 .manifesto-symbol {
@@ -324,6 +331,7 @@ section.work {
 .marquee-text h1 {
   font-size: 12rem;
   text-align: center;
+  font-family: "Fujiwara A Bold";
 }
 
 .showreel {
@@ -351,6 +359,7 @@ section.work {
   font-weight: 300;
   line-height: 1.5;
   text-indent: 2em;
+  font-family: "Fujiwara A Medium";
 }
 
 .about-col:nth-child(2) {
@@ -398,15 +407,29 @@ section.work {
   font-weight: 300;
 }
 
+.projects-intro {
+  width: 75%;
+  font-family: "Fujiwara A Medium";
+}
+
+.projects-intro h1 {
+  font-size: 5rem;
+}
+
 .team-member {
   display: flex;
   flex-direction: column;
   margin: 4em 0;
+  mix-blend-mode: difference;
 }
 
 .team-member-position p {
   text-transform: uppercase;
   margin-bottom: 0.75em;
+  mix-blend-mode: difference;
+}
+.team-member-index {
+  mix-blend-mode: difference;
 }
 
 .team-member-index p {
@@ -431,6 +454,7 @@ section.work {
   gap: 4em;
   left: -2em;
   width: calc(100% - 500px);
+  mix-blend-mode: difference;
 }
 .team-member-details {
   display: flex;
@@ -448,8 +472,6 @@ section.work {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 100%;
 }
 
 .team-member-copy {
@@ -469,12 +491,30 @@ section.work {
   position: relative;
 }
 
+.tm-1 {
+  left: 20%;
+}
+
 .tm-2 {
   left: 40%;
 }
 
 .tm-3 {
-  left: 15%;
+  left: 10%;
+}
+
+.tm-4 {
+  left: 40%;
+}
+
+.intro-proj {
+  font-size: 5rem;
+  width: 75%;
+}
+
+.intro-container {
+  width: 75%;
+  margin: 0 auto;
 }
 
 .footer {
@@ -485,11 +525,27 @@ section.work {
   margin-bottom: 2em;
 }
 
+.team-intro h1 {
+  font-size: 5rem;
+  font-family: "Fujiwara A Medium";
+  font-weight: 300;
+}
+
 .footer .container {
   padding: 2em 1em 1em 1em;
 }
 
+.footer-title {
+  mix-blend-mode: difference;
+}
+
+.logoFooter {
+  height: 10rem;
+  width: auto;
+}
+
 .footer-title h1 {
+  font-family: "Fujiwara A Bold";
   font-size: 5rem;
   font-weight: 300;
 }
@@ -501,9 +557,11 @@ section.work {
 .footer-email p,
 .footer-col-header p {
   color: var(--light2);
+  margin-bottom: 1.5rem;
 }
 
 .footer-email h2 {
+  font-family: "Fujiwara A Medium";
   font-size: 2.5rem;
   background: #958151;
   background: linear-gradient(
@@ -539,7 +597,9 @@ section.work {
   flex: 1;
   display: flex;
   flex-direction: column;
+  mix-blend-mode: difference;
 }
+
 
 .location {
   margin-bottom: 4em;
@@ -576,12 +636,18 @@ section.work {
   gap: 1.25em;
 }
 
-.footer-col:nth-child(2) .footer-sub-col p {
+.footer-col:nth-child(2) .footer-sub-col a {
   font-size: 1.25rem;
+  text-decoration: none;
+  color: white;
+  font-family: "Fujiwara A Medium";
 }
 
 /* light mode */
 .team,
+.cta,
+.manifesto,
+.marquee,
 .footer {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
@@ -597,6 +663,21 @@ section.work {
 }
 
 .team.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.manifesto.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.cta.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.marquee.light {
   background-color: #fff;
   color: #000;
 }
@@ -648,6 +729,10 @@ section.work {
 
   .cta-header h2 {
     font-size: 1.75rem;
+  }
+
+  .manifesto-title {
+    font-family: "Fujiwara A Medium";
   }
 
   .manifesto-title h1 {
@@ -704,6 +789,7 @@ section.work {
 
   .team-intro h1 {
     font-size: 3rem;
+    font-family: "Fujiwara A Medium";
   }
 
   .team-member-info {
@@ -722,9 +808,10 @@ section.work {
     display: block;
     margin-top: 0.5em;
   }
-
+  .tm-1,
   .tm-2,
-  .tm-3 {
+  .tm-3,
+  .tm-4 {
     left: 0%;
   }
 
@@ -740,9 +827,21 @@ section.work {
 
   .footer-title h1 {
     font-size: 3.5rem;
+    font-family: "Fujiwara A Bold";
   }
 
   .footer-email h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
+
+  .footer-email p,
+.footer-col-header p {
+  color: var(--light2);
+  margin-bottom: 0.5rem;
+}
+
+.logoFooter {
+  height: 5rem;
+  width: auto;
+}
 }

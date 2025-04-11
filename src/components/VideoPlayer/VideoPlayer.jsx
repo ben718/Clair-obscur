@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { Volume2, VolumeX, Maximize } from "lucide-react";
+import { Waypoint } from "react-waypoint";
 import "./VideoPlayer.css";
 
 const VideoPlayer = () => {
@@ -11,7 +12,7 @@ const VideoPlayer = () => {
   const [firstClick, setFirstClick] = useState(true);
   const videoRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = true;
       videoRef.current.play();
@@ -63,45 +64,55 @@ const VideoPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  let [shouldPlay, updatePlayState] = useState(false);
+
+  let handleEnterViewport = function () {
+    updatePlayState(true);
+  };
+  let handleExitViewport = function () {
+    updatePlayState(false);
+  };
+
   return (
-    <div className="video-container" onClick={handleVideoClick}>
-      <video
-        ref={videoRef}
-        className="video-player"
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={() => setDuration(videoRef.current.duration)}
-        src="/video/showreel.mov"
-        autoPlay
-        loop
-        playsInline
-      >
-        Your browser does not support the video tag.
-      </video>
+    <Waypoint onEnter={handleEnterViewport} onLeave={handleExitViewport}>
+      <div className="video-container" onClick={handleVideoClick}>
+        <video
+          ref={videoRef}
+          className="video-player"
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={() => setDuration(videoRef.current.duration)}
+          src="/video/showreel2.mp4"
+          playsInline="playsinline"
+          loop={true}
+        >
+          Your browser does not support the video tag.
+        </video>
 
-      {showControls && (
-        <div className="video-controls">
-          <div className="controls-wrapper">
-            <span className="time-display">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </span>
+        {showControls && (
+          <div className="video-controls">
+            <div className="controls-wrapper">
+              <span className="time-display">
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
 
-            <div className="control-buttons">
-              <button onClick={toggleMute} className="control-button">
-                {isMuted ? (
-                  <VolumeX className="icon" />
-                ) : (
-                  <Volume2 className="icon" />
-                )}
-              </button>
+              <div className="control-buttons">
+                <button onClick={toggleMute} className="control-button">
+                  {isMuted ? (
+                    <VolumeX className="icon" />
+                  ) : (
+                    <Volume2 className="icon" />
+                  )}
+                </button>
 
-              <button onClick={toggleFullScreen} className="control-button">
-                <Maximize className="icon" />
-              </button>
+                <button onClick={toggleFullScreen} className="control-button">
+                  <Maximize className="icon" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Waypoint>
   );
 };
 

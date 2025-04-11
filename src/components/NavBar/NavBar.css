@@ -14,7 +14,8 @@
 }
 
 .logo {
-  flex: 3;
+  height: auto;
+  width: 100px;
 }
 
 .nav-items {

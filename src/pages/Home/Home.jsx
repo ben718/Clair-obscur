@@ -4,9 +4,11 @@ import { Link } from "react-router";
 
 import HeroGradient from "../../components/HeroGradient/HeroGradient";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import VideoPlayer2 from "../../components/VideoPlayer/VideoPlayer2";
 import NavBar from "../../components/NavBar/NavBar";
 import Cursor from "../../components/Cursor/Cursor";
 import Transition from "../../components/Transition/Transition";
+import Slider from "../../components/slider/Slider";
 
 import { projects } from "./projects";
 
@@ -17,6 +19,7 @@ import ReactLenis from "@studio-freight/react-lenis";
 
 import { HiArrowRight } from "react-icons/hi";
 import { RiArrowRightDownLine } from "react-icons/ri";
+import Apply from "../../components/Apply/Apply";
 
 const Home = () => {
   const manifestoRef = useRef(null);
@@ -49,6 +52,37 @@ const Home = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.create({
+      trigger: ".cta",
+      start: "top 10%",
+      onEnter: () => {
+        document.querySelector(".cta").classList.add("light");
+        document.querySelector(".manifesto").classList.add("light");
+        // document.querySelector(".marquee").classList.add("light");
+      },
+      onLeaveBack: () => {
+        document.querySelector(".cta").classList.remove("light");
+        document.querySelector(".manifesto").classList.remove("light");
+        // document.querySelector(".marquee").classList.add("light");
+      },
+      toggleActions: "play reverse play reverse",
+    });
+
+    ScrollTrigger.create({
+      trigger: ".about",
+      start: "top 80%",
+      onEnter: () => {
+        document.querySelector(".cta").classList.remove("light");
+        document.querySelector(".manifesto").classList.remove("light");
+        // document.querySelector(".marquee").classList.remove("light");
+      },
+      onLeaveBack: () => {
+        document.querySelector(".cta").classList.add("light");
+        document.querySelector(".manifesto").classList.add("light");
+        // document.querySelector(".marquee").classList.add("light");
+      },
+    });
+
+    ScrollTrigger.create({
       trigger: ".footer",
       start: "top 80%",
       onEnter: () => {
@@ -61,9 +95,9 @@ const Home = () => {
       },
     });
 
-    if (!isMobile) {
-      gsap.set(".project", { opacity: 0.35 });
-    }
+    // if (!isMobile) {
+    //   gsap.set(".project", { opacity: 0.35 });
+    // }
 
     if (!isMobile) {
       const projects = document.querySelectorAll(".project");
@@ -146,21 +180,21 @@ const Home = () => {
       );
     });
 
-    gsap.to(".marquee-text", {
-      scrollTrigger: {
-        trigger: ".marquee",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-        markers: false,
-        onUpdate: (self) => {
-          const moveAmount = self.progress * -1000;
-          gsap.set(".marquee-text", {
-            x: moveAmount,
-          });
-        },
-      },
-    });
+    // gsap.to(".marquee-text", {
+    //   scrollTrigger: {
+    //     trigger: ".marquee",
+    //     start: "top bottom",
+    //     end: "bottom top",
+    //     scrub: 1,
+    //     markers: false,
+    //     onUpdate: (self) => {
+    //       const moveAmount = self.progress * -1000;
+    //       gsap.set(".marquee-text", {
+    //         x: moveAmount,
+    //       });
+    //     },
+    //   },
+    // });
 
     return () => {
       tl.kill();
@@ -225,80 +259,26 @@ const Home = () => {
           <HeroGradient />
           <div className="header-container">
             <div className="header h-1">
-              <h1>Made to Move,</h1>
-              <h1>Built to Inspire</h1>
+              <h1>La vie est faite de</h1>
+              <h1>moments de lumière...</h1>
             </div>
             <div className="header h-2">
-              <h1>Ideas Born,</h1>
-              <h1>Boundaries Broken</h1>
+              <h1>et</h1>
+              <h1>d'obscurité.</h1>
             </div>
             <div className="header h-3">
-              <h1>Nơi sáng tạo,</h1>
-              <h1>Không giới hạn</h1>
+              <h1>La vie est faite de</h1>
+              <h1>moments de lumière</h1>
             </div>
             <div className="header h-4">
-              <h1>Where Vision Meets,</h1>
-              <h1>Limitless Design</h1>
-            </div>
-          </div>
-        </section>
-
-        <section className="work" id="work">
-          <div className="container">
-            <div className="work-header">
-              <HiArrowRight size={13} />
-              <p>Selected projects</p>
-            </div>
-
-            <div className="projects">
-              <div className="project-col">
-                {projects
-                  .filter((project) => project.column === 1)
-                  .map((project) => (
-                    <Link to="/work" key={project.id}>
-                      <div className="project">
-                        <div className="project-img">
-                          <img src={project.image} alt="Project Thumbnail" />
-                        </div>
-                        <div className="project-name">
-                          <h2>{project.title}</h2>
-                        </div>
-                        <div className="project-description">
-                          <p>{project.description}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-              </div>
-
-              <div className="project-col">
-                {projects
-                  .filter((project) => project.column === 2)
-                  .map((project) => (
-                    <Link to="/work" key={project.id}>
-                      <div className="project">
-                        <div className="project-img">
-                          <img src={project.image} alt="Project Thumbnail" />
-                        </div>
-                        <div className="project-name">
-                          <h2>{project.title}</h2>
-                        </div>
-                        <div className="project-description">
-                          <p>{project.description}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-              </div>
+              <h1>et</h1>
+              <h1>d'obscurité.</h1>
             </div>
           </div>
         </section>
 
         <section className="cta">
-          <div className="cta-bg-img">
-            <img src="/cta/cta-bg.png" alt="" />
-          </div>
-          <div className="cta-title">
+          {/* <div className="cta-title">
             <p>Trusted by visionaries</p>
           </div>
           <div className="cta-header">
@@ -310,98 +290,37 @@ const Home = () => {
           </div>
           <div className="cta-btn">
             <button>Discover more at origin.co</button>
-          </div>
+          </div> */}
         </section>
 
         <section className="manifesto" id="manifesto" ref={manifestoRef}>
           <div className="container">
             <div className="manifesto-header">
               <HiArrowRight size={13} />
-              <p>Manifesto</p>
+              <p>Pitch</p>
             </div>
             <div className="manifesto-title">
               <h1>
-                We challenge norms, embrace change, pioneer progress. We are
-                innovators merging art and technology to craft experiences that
-                surprise, delight, and evolve.
+                {/* La couleur compose nos images comme les émotions font nos
+                histoires. Clair Obscur est une agence de production
+                audiovisuelle animée par la volonté de capturer et retransmettre
+                à travers l’image la puissance de toutes nos émotions. Joie,
+                tristesse, colère… toutes ces perceptions et les infinis qu’il y
+                a entre elles gravitent autour de nous. */}
+                Clair Obscur est une agence de production audiovisuelle dédiée à
+                capturer et retransmettre à travers l’image toute la puissance
+                des émotions. Joie, tristesse, colère… ces instants qui nous
+                entourent façonnent nos plus beaux souvenirs.
               </h1>
             </div>
           </div>
         </section>
 
-        <section className="processes">
-          <div className="container">
-            <div className="process">
-              <div className="process-title">
-                <RiArrowRightDownLine />
-                <p>Integrate</p>
-              </div>
-              <div className="process-info">
-                <div className="process-icon">
-                  <div className="process-icon-wrapper">
-                    <img src="/processes/icon-1.png" alt="" />
-                  </div>
-                </div>
-                <div className="process-description">
-                  <p>
-                    Rooted in creativity, Origin bridges cultures to craft
-                    designs that transcend time and place. We thrive at the
-                    intersection of ideas, uniting diverse perspectives into a
-                    seamless vision.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="process">
-              <div className="process-title">
-                <RiArrowRightDownLine />
-                <p>Collaborate</p>
-              </div>
-              <div className="process-info">
-                <div className="process-icon">
-                  <div className="process-icon-wrapper">
-                    <img src="/processes/icon-2.png" alt="" />
-                  </div>
-                </div>
-                <div className="process-description">
-                  <p>
-                    Creativity is a collective process. At Origin, collaboration
-                    is our foundation—merging ideas, talents, and visions to
-                    create experiences that resonate universally.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="process">
-              <div className="process-title">
-                <RiArrowRightDownLine />
-                <p>Challenge</p>
-              </div>
-              <div className="process-info">
-                <div className="process-icon">
-                  <div className="process-icon-wrapper">
-                    <img src="/processes/icon-3.png" alt="" />
-                  </div>
-                </div>
-                <div className="process-description">
-                  <p>
-                    We challenge conventions and redefine possibilities. At
-                    Origin, we dare to push boundaries, delivering solutions
-                    that are as bold as they are impactful.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="marquee">
+        {/* <div className="marquee">
           <div className="marquee-text">
-            <h1>Explore the essence of Origin Studio</h1>
+            <h1>Lorem ipsum dolor sit amet.</h1>
           </div>
-        </div>
+        </div> */}
 
         <section className="showreel">
           <VideoPlayer />
@@ -410,127 +329,139 @@ const Home = () => {
         <section className="about" id="about">
           <div className="container">
             <div className="about-col">
-              <div className="about-header">
-                <HiArrowRight size={13} />
-                <p>Origin Spirit</p>
-              </div>
               <div className="about-copy">
                 <p>
-                  The Origin Spirit embodies creativity without boundaries.
-                  Whether you’re a lifelong dreamer, a new explorer, or someone
-                  returning to familiar grounds, Origin welcomes those who dare
-                  to imagine. Being part of Origin means embracing inspiration,
-                  collaboration, and limitless potential.
+                  Science ou magie, à vous de voir selon votre degré de
+                  superstition. Retenez surtout que Clair Obscur développe cette
+                  aptitude à faire ressortir le plus profond des états
+                  émotionnels pour le mettre au service d’une écriture puissante
+                  et des captations et montages vidéo intenses. Vos histoires
+                  exposées au monde, selon ce que vous souhaitez qu’on en
+                  retienne.
                 </p>
               </div>
             </div>
             <div className="about-col">
               <div className="cta-btn">
-                <button>Discover more at origin.co</button>
+                <button>Demander un devis</button>
               </div>
             </div>
           </div>
         </section>
+        {/* <Apply /> */}
 
         <section className="gallery">
           <div className="gallery-wrapper">
             <div className="row">
               <div className="img">
-                <img src="/marquee/img1.jpeg" alt="" />
+                <img src="/marquee/img1.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img2.jpeg" alt="" />
+                <img src="/marquee/img2.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img3.jpeg" alt="" />
+                <img src="/marquee/img3.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img4.jpeg" alt="" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="img">
-                <img src="/marquee/img5.jpeg" alt="" />
-              </div>
-              <div className="img">
-                <img src="/marquee/img6.jpeg" alt="" />
-              </div>
-              <div className="img">
-                <img src="/marquee/img7.jpeg" alt="" />
-              </div>
-              <div className="img">
-                <img src="/marquee/img8.jpeg" alt="" />
+                <img src="/marquee/img4.jpg" alt="" />
               </div>
             </div>
             <div className="row">
               <div className="img">
-                <img src="/marquee/img9.jpeg" alt="" />
+                <img src="/marquee/img5.png" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img10.jpeg" alt="" />
+                <img src="/marquee/img6.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img11.jpeg" alt="" />
+                <img src="/marquee/img7.png" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img12.jpeg" alt="" />
+                <img src="/marquee/img8.jpg" alt="" />
               </div>
             </div>
             <div className="row">
               <div className="img">
-                <img src="/marquee/img13.jpeg" alt="" />
+                <img src="/marquee/img9.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img14.jpeg" alt="" />
+                <img src="/marquee/img10.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img15.jpeg" alt="" />
+                <img src="/marquee/img11.jpg" alt="" />
               </div>
               <div className="img">
-                <img src="/marquee/img16.jpeg" alt="" />
+                <img src="/marquee/img12.jpg" alt="" />
+              </div>
+            </div>
+            <div className="row">
+              <div className="img">
+                <img src="/marquee/img13.jpg" alt="" />
+              </div>
+              <div className="img">
+                <img src="/marquee/img14.jpg" alt="" />
+              </div>
+              <div className="img">
+                <img src="/marquee/img15.jpg" alt="" />
+              </div>
+              <div className="img">
+                <img src="/marquee/img16.jpg" alt="" />
               </div>
             </div>
           </div>
         </section>
 
+        <div className="container-work-intro">
+          <div className="team-header">
+            <HiArrowRight />
+            <p>Réalisations</p>
+          </div>
+          <div className="projects-intro">
+            <h1>Nos réalisations</h1>
+          </div>
+        </div>
+        <section id="work">
+          <Slider />
+        </section>
+
         <section className="team" id="team">
           <div className="container">
             <div className="team-header">
-              <HiArrowRight />
-              <p>Team</p>
+              <p>L'équipe</p>
             </div>
 
             <div className="team-intro">
-              <h1>
-                From corners of globe, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we are
-                united by &nbsp;&nbsp;&nbsp; creativity
-              </h1>
+              <h1>L'équipe Clair Obscur &nbsp;&nbsp;&nbsp;</h1>
             </div>
 
             <div className="team-member tm-1">
               <div className="team-member-position">
-                <p>Lead Developer</p>
+                <p>Directeur Artistique / Chef de stratégie</p>
               </div>
               <div className="team-member-profile">
                 <div className="team-member-img">
-                  <img src="/team/team-1.jpg" alt="" />
+                  <img src="/team/member1.jpeg" alt="" />
                 </div>
                 <div className="team-member-info">
                   <div className="team-member-name">
                     <p>
-                      Alex <br />
-                      Johnson
+                      Zinedine <br />
+                      Lemba
                     </p>
                   </div>
                   <div className="team-member-details">
-                    <div className="team-member-toggle">
-                      <HiArrowRight size={24} />
-                    </div>
+                    <div className="team-member-toggle"></div>
                     <div className="team-member-copy">
                       <p>
-                        Alex is a skilled developer with expertise in modern web
-                        technologies and a passion for creating seamless user
-                        experiences.
+                        Zinedine est un artiste visuel. Il est excellent sur
+                        beaucoup de chose notamment pour transformer des idées
+                        en concepts visuels percutants. Chaque projet doit avoir
+                        sa personnalité et vous pouvez compter sur Zinedine pour
+                        la consolider. C’est également un chargé de
+                        communication en puissance qui a déjà accompagné
+                        plusieurs marques sur des stratégies pub. Doté d’un
+                        excellent relationnel, il sait fédérer les équipes et
+                        captiver les clients avec des propositions pertinentes.
                       </p>
                     </div>
                   </div>
@@ -538,33 +469,37 @@ const Home = () => {
               </div>
               <div className="team-member-index">
                 <p>(01)</p>
-                <h1>Alex Johnson</h1>
+                <h1>Zinedine Lemba</h1>
               </div>
             </div>
 
             <div className="team-member tm-2">
               <div className="team-member-position">
-                <p>UI/UX Designer</p>
+                <p>Scénariste / Motion designer </p>
               </div>
               <div className="team-member-profile">
                 <div className="team-member-img">
-                  <img src="/team/team-2.jpg" alt="" />
+                  <img src="/team/member2.jpeg" alt="" />
                 </div>
                 <div className="team-member-info">
                   <div className="team-member-name">
                     <p>
-                      Sophia <br />
-                      Martinez
+                      Idrissa <br />
+                      Kanoute
                     </p>
                   </div>
                   <div className="team-member-details">
-                    <div className="team-member-toggle">
-                      <HiArrowRight size={24} />
-                    </div>
+                    <div className="team-member-toggle"></div>
                     <div className="team-member-copy">
                       <p>
-                        Sophia specializes in crafting intuitive and visually
-                        appealing designs that bring digital products to life.
+                        Idrissa nourrit sa créativité depuis son plus jeune âge
+                        en inventant des histoires en tous genres. Capable de
+                        visualiser des scènes fictives à partir de quelques
+                        mots, il a rapidement vu dans la vidéo « le meilleur
+                        outil pour raconter des histoires ». Pour donner vie à
+                        ses idées, il s’est spécialisé en motion design et
+                        montage vidéo. L’image et l’écriture se mêlent dans son
+                        travail, pour créer des récits visuels grandioses.
                       </p>
                     </div>
                   </div>
@@ -572,34 +507,35 @@ const Home = () => {
               </div>
               <div className="team-member-index">
                 <p>(02)</p>
-                <h1>Sophia Martinez</h1>
+                <h1>Idrissa Kanoute</h1>
               </div>
             </div>
 
             <div className="team-member tm-3">
               <div className="team-member-position">
-                <p>Project Manager</p>
+                <p>Réalisateur / Chef opérateur</p>
               </div>
               <div className="team-member-profile">
                 <div className="team-member-img">
-                  <img src="/team/team-3.jpg" alt="" />
+                  <img src="/team/member3.jpeg" alt="" />
                 </div>
                 <div className="team-member-info">
                   <div className="team-member-name">
                     <p>
-                      Michael <br />
-                      Brown
+                      Ben <br />
+                      Mvouama
                     </p>
                   </div>
                   <div className="team-member-details">
-                    <div className="team-member-toggle">
-                      <HiArrowRight size={24} />
-                    </div>
+                    <div className="team-member-toggle"></div>
                     <div className="team-member-copy">
                       <p>
-                        Michael ensures projects are delivered on time and
-                        within scope, maintaining excellent communication with
-                        clients and the team.
+                        Fabriqueur d’images, Ben est un as de la caméra. En
+                        charge de plusieurs documentaires de télévision et de
+                        publicités c’est une encyclopédie des codes de
+                        l’imagerie. Mouvements, angles, éclairages, donnez lui
+                        n’importe quel sujet qui possède au moins 3 côtés et il
+                        saura vous le sublimer.
                       </p>
                     </div>
                   </div>
@@ -607,10 +543,52 @@ const Home = () => {
               </div>
               <div className="team-member-index">
                 <p>(03)</p>
-                <h1>Michael Brown</h1>
+                <h1>Ben Mvouama</h1>
+              </div>
+            </div>
+
+            <div className="team-member tm-4">
+              <div className="team-member-position">
+                <p>Monteur / Artiste 3D</p>
+              </div>
+              <div className="team-member-profile">
+                <div className="team-member-img">
+                  <img src="/team/member4.jpeg" alt="" />
+                </div>
+                <div className="team-member-info">
+                  <div className="team-member-name">
+                    <p>
+                      Ousmane <br />
+                      Kanoute
+                    </p>
+                  </div>
+                  <div className="team-member-details">
+                    <div className="team-member-toggle"></div>
+                    <div className="team-member-copy">
+                      <p>
+                        Installé sur la frontière entre le réel et l’utopie
+                        Ousmane est un artiste 3D qui cherche à repousser les
+                        limites du possible. Ses inspirations il va les chercher
+                        au plus profond du metaverse tentant par tous les moyens
+                        de transformer l’illusoire en réalisable. Il se définit
+                        lui même comme un « dégénéré » et a choisi la 3D pour
+                        dépasser les limites humaines, sans jamais y trouver la
+                        fin. Cette science il l’applique aussi dans sa capacité
+                        à monter des vidéos et c’est à notre grand bonheur.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="team-member-index">
+                <p>(04)</p>
+                <h1>Ousmane Kanoute</h1>
               </div>
             </div>
           </div>
+          <section className="showreel">
+            <VideoPlayer2 />
+          </section>
         </section>
 
         <section className="footer" id="contact">
@@ -621,83 +599,38 @@ const Home = () => {
             </div>
 
             <div className="footer-title">
-              <h1>Keep in touch</h1>
-            </div>
-
-            <div className="footer-email">
-              <p>We’d love to hear from you</p>
-              <h2>hello@origin.co</h2>
+              {/* <h1>Collaborons.</h1> */}
+              <img className="logoFooter" src="/logo.png" alt="" />
             </div>
 
             <div className="footer-content">
               <div className="footer-col">
-                <div className="footer-col-header">
-                  <p>Our Spaces</p>
-                </div>
-
                 <div className="footer-col-content">
-                  <div className="footer-sub-col">
-                    <div className="location">
-                      <h3>New York</h3>
-                      <p>123 Creative Hub,</p>
-                      <p>5th Avenue, Suite 101</p>
-                      <p>New York, NY, 10010</p>
-                      <p>USA</p>
-
-                      <p>
-                        <HiArrowRight /> View on map
-                      </p>
-                    </div>
-
-                    <div className="location">
-                      <h3>Tokyo</h3>
-                      <p>Innovators Tower,</p>
-                      <p>Shibuya City, 8th Floor</p>
-                      <p>Tokyo, 150-0001</p>
-                      <p>Japan</p>
-
-                      <p>
-                        <HiArrowRight /> View on map
-                      </p>
-                    </div>
-                  </div>
-                  <div className="footer-sub-col">
-                    <div className="location">
-                      <h3>London</h3>
-                      <p>Design District,</p>
-                      <p>Greenwich Peninsula</p>
-                      <p>London, SE10 0ER</p>
-                      <p>UK</p>
-
-                      <p>
-                        <HiArrowRight /> View on map
-                      </p>
-                    </div>
-
-                    <div className="location">
-                      <h3>Singapore</h3>
-                      <p>Marina Bay Financial Center,</p>
-                      <p>10 Marina Blvd, Tower 2</p>
-                      <p>Singapore, 018983</p>
-                      <p>Singapore</p>
-
-                      <p>
-                        <HiArrowRight /> View on map
-                      </p>
-                    </div>
+                  <div className="footer-email">
+                    <p>Par mail</p>
+                    <h2>clairobscuragence@gmail.com</h2>
                   </div>
                 </div>
               </div>
               <div className="footer-col">
                 <div className="footer-col-header">
-                  <p>Follow Us</p>
+                  <p>Réseaux sociaux</p>
                 </div>
                 <div className="footer-sub-col">
-                  <p>Instagram</p>
-                  <p>LinkedIn</p>
-                  <p>Twitter</p>
-                  <p>Behance</p>
-                  <p>Dribbble</p>
+                  <a
+                    className="footerLink"
+                    href="https://www.instagram.com/agenceclairobscur/"
+                    target="_blank"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    className="footerLink"
+                    href="https://www.linkedin.com/company/clair-obscur-vision/"
+                    target="_blank"
+                  >
+                    LinkedIn
+                  </a>
                 </div>
               </div>
             </div>

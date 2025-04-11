@@ -124,33 +124,32 @@ const NavBar = () => {
       <div className="navbar-container">
         <div className="logo">
           <a href="#hero">
-            <h3>origin</h3>
-            <span>studio</span>
+            <img
+              className="logo"
+              src="/navbar/logoFoot.png"
+              alt="Clair Obscur"
+            />
           </a>
         </div>
 
         <div className="nav-items">
-          <div className="langs">
-            <p className="current-lang">EN</p>
-            <p>VN</p>
-            <p>ZH</p>
-          </div>
+          <div className="langs"></div>
 
           <div className="nav-links">
-            <a href="#work">
-              <p>Work</p>
-            </a>
             <a href="#manifesto">
-              <p>Manifesto</p>
+              <p>Pitch</p>
             </a>
-            <a href="#about">
+            {/* <a href="#about">
               <p>Spirit</p>
+            </a> */}
+            <a href="#work">
+              <p>Réalisations</p>
             </a>
             <a href="#team">
-              <p>Team</p>
+              <p>L'équipe</p>
             </a>
             <a href="#contact">
-              <p>Contact</p>
+              <p>Nous contacter</p>
             </a>
           </div>
         </div>
